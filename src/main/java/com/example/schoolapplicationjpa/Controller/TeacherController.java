@@ -1,7 +1,7 @@
 package com.example.schoolapplicationjpa.Controller;
 
 import com.example.schoolapplicationjpa.entity.Teacher;
-import com.example.schoolapplicationjpa.request.TeacherReq;
+import com.example.schoolapplicationjpa.entity.request.TeacherReq;
 import com.example.schoolapplicationjpa.service.TeacherService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

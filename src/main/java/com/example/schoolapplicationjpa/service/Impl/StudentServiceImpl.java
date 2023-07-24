@@ -2,14 +2,14 @@ package com.example.schoolapplicationjpa.service.Impl;
 
 import com.example.schoolapplicationjpa.entity.Student;
 import com.example.schoolapplicationjpa.repository.StudentRepo;
-import com.example.schoolapplicationjpa.request.StudentReq;
+import com.example.schoolapplicationjpa.entity.request.StudentReq;
 import com.example.schoolapplicationjpa.service.StudentService;
+import java.util.ArrayList;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,13 +51,25 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<Student> getStudentByLastName(String lastName) {
-        List<Student> stuLastName = new ArrayList<>();
-        for(Student student : studentRepo.findAll()){
-            if(student.getLastName().equalsIgnoreCase(lastName)){
-                stuLastName.add(student);
-            }
-        }
-       return stuLastName;
+            return studentRepo.findStudentByLastName(lastName).stream().toList();
+
+//        List<Student> students = studentRepo.findAll();
+//        return students.stream()
+//            .filter(stu -> stu.getLastName().equalsIgnoreCase(lastName))
+//            .toList();
+
+//        List<Student> stuLastName = new ArrayList<>();
+//        for(Student student : studentRepo.findAll()){
+//            if(student.getLastName().equalsIgnoreCase(lastName)){
+//                stuLastName.add(student);
+//            }
+//        }
+//        return stuLastName;
+    }
+
+    @Override
+    public List<Student> getStudentByFirstName(String firstName) {
+        return studentRepo.findStudentByFirstName(firstName).stream().toList();
     }
 
 

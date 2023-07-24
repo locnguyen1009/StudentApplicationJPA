@@ -1,7 +1,7 @@
 package com.example.schoolapplicationjpa.Controller;
 
 import com.example.schoolapplicationjpa.entity.Student;
-import com.example.schoolapplicationjpa.request.StudentReq;
+import com.example.schoolapplicationjpa.entity.request.StudentReq;
 import com.example.schoolapplicationjpa.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,6 +15,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 public class StudentController {
+
     private final StudentService studentService;
 
     @GetMapping("")
@@ -29,9 +30,13 @@ public class StudentController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Student ID is not found"));
     }
 
-    @GetMapping("/lastname")
+    @GetMapping("/lastName")
     public List<Student> getStudentByLastName(@RequestParam String lastName){
         return studentService.getStudentByLastName(lastName);
+    }
+    @GetMapping("/firstName")
+    public List<Student> getStudentByFirstName(@RequestParam String firstName){
+        return studentService.getStudentByFirstName(firstName);
     }
 
     @PostMapping("")

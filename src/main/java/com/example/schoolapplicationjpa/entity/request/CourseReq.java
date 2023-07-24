@@ -1,4 +1,4 @@
-package com.example.schoolapplicationjpa.request;
+package com.example.schoolapplicationjpa.entity.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,7 +1,7 @@
 package com.example.schoolapplicationjpa.service;
 
 import com.example.schoolapplicationjpa.entity.Teacher;
-import com.example.schoolapplicationjpa.request.TeacherReq;
+import com.example.schoolapplicationjpa.entity.request.TeacherReq;
 
 import java.util.List;
 import java.util.Optional;

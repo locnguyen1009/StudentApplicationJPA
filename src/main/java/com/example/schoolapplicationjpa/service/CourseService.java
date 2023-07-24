@@ -2,7 +2,7 @@ package com.example.schoolapplicationjpa.service;
 
 
 import com.example.schoolapplicationjpa.entity.Course;
-import com.example.schoolapplicationjpa.request.CourseReq;
+import com.example.schoolapplicationjpa.entity.request.CourseReq;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

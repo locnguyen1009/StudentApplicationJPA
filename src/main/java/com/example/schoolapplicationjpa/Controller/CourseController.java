@@ -1,7 +1,7 @@
 package com.example.schoolapplicationjpa.Controller;
 
 import com.example.schoolapplicationjpa.entity.Course;
-import com.example.schoolapplicationjpa.request.CourseReq;
+import com.example.schoolapplicationjpa.entity.request.CourseReq;
 import com.example.schoolapplicationjpa.service.CourseService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

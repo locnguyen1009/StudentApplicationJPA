@@ -1,7 +1,7 @@
 package com.example.schoolapplicationjpa.service;
 
 import com.example.schoolapplicationjpa.entity.Student;
-import com.example.schoolapplicationjpa.request.StudentReq;
+import com.example.schoolapplicationjpa.entity.request.StudentReq;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,4 +14,6 @@ public interface StudentService {
     void deleteStudentById(Long id);
 
     List<Student> getStudentByLastName(String lastName);
+
+  List<Student> getStudentByFirstName(String firstName);
 }
