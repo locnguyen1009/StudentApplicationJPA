@@ -1,8 +1,8 @@
 package com.example.schoolapplicationjpa.service.Impl;
 
-import com.example.schoolapplicationjpa.entity.Course;
+import com.example.schoolapplicationjpa.entity.model.Course;
 import com.example.schoolapplicationjpa.repository.CourseRepo;
-import com.example.schoolapplicationjpa.entity.request.CourseReq;
+import com.example.schoolapplicationjpa.entity.apiPayload.coursePayload.CourseReq;
 import com.example.schoolapplicationjpa.service.CourseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

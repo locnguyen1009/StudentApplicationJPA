@@ -1,11 +1,14 @@
 package com.example.schoolapplicationjpa.service.Impl;
 
-import com.example.schoolapplicationjpa.entity.Student;
+import com.example.schoolapplicationjpa.entity.apiPayload.studentPayload.StudentMapper;
+import com.example.schoolapplicationjpa.entity.apiPayload.studentPayload.StudentResp;
+import com.example.schoolapplicationjpa.entity.model.Student;
 import com.example.schoolapplicationjpa.repository.StudentRepo;
-import com.example.schoolapplicationjpa.entity.request.StudentReq;
+import com.example.schoolapplicationjpa.entity.apiPayload.studentPayload.StudentReq;
 import com.example.schoolapplicationjpa.service.StudentService;
-import java.util.ArrayList;
+import com.example.schoolapplicationjpa.utils.SimpleDateTimeFormatter;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.BeanUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -28,10 +31,10 @@ public class StudentServiceImpl implements StudentService {
     }
 
     public Student createStudent(StudentReq studentReq) {
+//        Student student = StudentMapper.toStudentReq(studentReq);
         Student student = new Student();
-        student.setFirstName(studentReq.getFirstName());
-        student.setLastName(studentReq.getLastName());
-        student.setGrade(studentReq.getGrade());
+        BeanUtils.copyProperties(studentReq, student);
+        student.setDob(SimpleDateTimeFormatter.dateFormatter(studentReq.getDob()));
         return studentRepo.save(student);
     }
 
@@ -40,6 +43,7 @@ public class StudentServiceImpl implements StudentService {
         if(getStudentById(id).isEmpty()){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Student Id is not found");
         }
+
         student.setId(id);
         return Optional.of(studentRepo.save(student));
     }

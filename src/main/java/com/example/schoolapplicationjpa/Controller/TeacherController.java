@@ -1,7 +1,8 @@
 package com.example.schoolapplicationjpa.Controller;
 
-import com.example.schoolapplicationjpa.entity.Teacher;
-import com.example.schoolapplicationjpa.entity.request.TeacherReq;
+import com.example.schoolapplicationjpa.entity.apiPayload.teacherPayload.TeacherDto;
+import com.example.schoolapplicationjpa.entity.apiPayload.teacherPayload.TeacherReq;
+import com.example.schoolapplicationjpa.entity.model.Teacher;
 import com.example.schoolapplicationjpa.service.TeacherService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -14,14 +15,14 @@ import java.util.Optional;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/teachers")
+@RequestMapping("/teacher")
 public class TeacherController {
 
     private final TeacherService teacherService;
 
     @GetMapping("")
-    public List<Teacher> getAllTeacher() {
-        return teacherService.getAllTeacher();
+    public List<TeacherDto> getAllTeacherDto() {
+        return teacherService.getAllTeacherDto();
     }
 
     @GetMapping("/{teacherId}")
@@ -33,7 +34,7 @@ public class TeacherController {
     }
 
     @PostMapping("")
-    public Teacher addTeacher (@RequestBody TeacherReq teacherReq){
+    public TeacherDto addTeacher (@RequestBody TeacherReq teacherReq){
         return teacherService.addTeacher(teacherReq);
     }
 

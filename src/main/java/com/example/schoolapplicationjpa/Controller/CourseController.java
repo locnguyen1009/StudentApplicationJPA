@@ -1,7 +1,7 @@
 package com.example.schoolapplicationjpa.Controller;
 
-import com.example.schoolapplicationjpa.entity.Course;
-import com.example.schoolapplicationjpa.entity.request.CourseReq;
+import com.example.schoolapplicationjpa.entity.model.Course;
+import com.example.schoolapplicationjpa.entity.apiPayload.coursePayload.CourseReq;
 import com.example.schoolapplicationjpa.service.CourseService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/courses")
+@RequestMapping("/course")
 public class CourseController {
 
     private final CourseService courseService;

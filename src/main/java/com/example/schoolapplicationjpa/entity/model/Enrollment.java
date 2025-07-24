@@ -1,4 +1,4 @@
-package com.example.schoolapplicationjpa.entity;
+package com.example.schoolapplicationjpa.entity.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Entity;
@@ -21,21 +21,20 @@ import java.util.Set;
 @Table(name = "t_enrollment")
 public class Enrollment {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private Long courseId;
     private Long teacherId;
     private Integer maxCapacity;
     private Set<Long> studentIds = new HashSet<>();
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date enrollDeadline;
+//    @JsonFormat(pattern = "yyyy-MM-dd")
+    private String enrollDeadline;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date begin;
+//    @JsonFormat(pattern = "yyyy-MM-dd")
+    private String beginDate;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date end;
+//    @JsonFormat(pattern = "yyyy-MM-dd")
+    private String endDate;
 
 }

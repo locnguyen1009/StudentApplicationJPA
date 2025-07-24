@@ -1,10 +1,14 @@
 package com.example.schoolapplicationjpa.service.Impl;
 
-import com.example.schoolapplicationjpa.entity.Teacher;
+import com.example.schoolapplicationjpa.entity.apiPayload.teacherPayload.TeacherDto;
+import com.example.schoolapplicationjpa.entity.apiPayload.teacherPayload.TeacherReq;
+import com.example.schoolapplicationjpa.entity.model.Teacher;
 import com.example.schoolapplicationjpa.repository.TeacherRepo;
-import com.example.schoolapplicationjpa.entity.request.TeacherReq;
 import com.example.schoolapplicationjpa.service.TeacherService;
+import com.example.schoolapplicationjpa.utils.SimpleDateTimeFormatter;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,8 +21,19 @@ public class TeacherServiceImpl implements TeacherService {
     private final TeacherRepo teacherRepo;
 
     @Override
-    public List<Teacher> getAllTeacher() {
-        return teacherRepo.findAll();
+    public List<TeacherDto> getAllTeacherDto() {
+        return teacherRepo.findAll().stream()
+//            .map(teacher -> {
+//                TeacherDto teacherDto = new TeacherDto();
+//                teacherDto.setId(teacher.getId());
+//                teacherDto.setFirstName(teacher.getFirstName());
+//                teacherDto.setLastName(teacher.getLastName());
+//                teacherDto.setDob(teacher.getDob());
+//                teacherDto.setSkills(teacher.getSkills());
+//                return teacherDto;
+//            })
+            .map(Teacher::getTeacherDto)
+            .collect(Collectors.toList());
     }
 
     @Override
@@ -27,11 +42,15 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
-    public Teacher addTeacher(TeacherReq teacherReq) {
+    public TeacherDto addTeacher(TeacherReq teacherReq) {
+//        TeacherDto teacher = TeacherMapper.toTeacherReq(teacherReq);
         Teacher teacher = new Teacher();
-        teacher.setFirstName(teacherReq.getFirstName());
-        teacher.setLastName(teacherReq.getLastName());
-        return teacherRepo.save(teacher);
+        BeanUtils.copyProperties(teacherReq, teacher);
+        teacher.setDob(SimpleDateTimeFormatter.dateFormatter(teacherReq.getDob()));
+        Teacher addTeacher = teacherRepo.save(teacher);
+        TeacherDto createdTeacherDto = new TeacherDto();
+        BeanUtils.copyProperties(addTeacher, createdTeacherDto);
+        return createdTeacherDto;
     }
 
     @Override

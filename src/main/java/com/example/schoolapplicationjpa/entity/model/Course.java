@@ -1,4 +1,4 @@
-package com.example.schoolapplicationjpa.entity;
+package com.example.schoolapplicationjpa.entity.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
